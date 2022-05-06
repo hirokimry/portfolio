@@ -227,7 +227,8 @@ export const WorkDetail: VFC = () => {
   const linkTextStyle = css`
     /* 文字 */
     font-size: 1em;
-    text-decoration: underline 1px;
+    text-decoration-line: underline;
+    text-decoration-thickness: 1px;
 
     /* スマートフォン用 */
     @media (max-width: 780px) {

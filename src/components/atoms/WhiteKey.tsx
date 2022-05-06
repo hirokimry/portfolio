@@ -17,7 +17,7 @@ export const WhiteKey: VFC<Props> = (props) => {
       ? () => {
           const sectionId = document.getElementById(children);
           if (sectionId != null) {
-            sectionId.scrollIntoView({ behavior: "smooth", block: "end" });
+            sectionId.scrollIntoView({ behavior: "smooth" });
           }
         }
       : () => {};

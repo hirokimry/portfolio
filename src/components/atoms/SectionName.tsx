@@ -11,7 +11,8 @@ export const SectionName: VFC<Props> = (props) => {
     /* 文字 */
     font-size: 48px;
     font-weight: normal;
-    text-decoration: underline 2px;
+    text-decoration-line: underline;
+    text-decoration-thickness: 2px;
 
     /* 配置 */
     display: flex;

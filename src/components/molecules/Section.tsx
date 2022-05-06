@@ -28,6 +28,7 @@ export const Section: VFC<Props> = (props) => {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    scroll-margin-top: ${headerHeight.headerHeight}px;
 
     /* 表示崩れ防止 */
     @media (max-height: 780px) and (min-width: 780px) {

@@ -117,7 +117,7 @@ export const Top: VFC = () => {
     AboutId !== undefined
       ? () => {
           if (AboutId !== undefined) {
-            AboutId?.scrollIntoView({ behavior: "smooth", block: "end" });
+            AboutId?.scrollIntoView({ behavior: "smooth" });
           }
         }
       : () => {};
