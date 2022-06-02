@@ -1,13 +1,14 @@
 /** @jsxImportSource @emotion/react */
 import { VFC } from "react";
 import { css } from "@emotion/react";
+import { useContext } from "react";
+import { workDataContext } from "../../context/workData";
 import { Text } from "../atoms/Text";
-import PortfolioImage1 from "../../img/Portfolio1.png";
-import PortfolioImage2 from "../../img/Portfolio2.png";
-import PortfolioImage3 from "../../img/Portfolio3.png";
 import LinkIcon from "@mui/icons-material/Link";
 
 export const WorkDetail: VFC = () => {
+  const isWorkData = useContext(workDataContext);
+
   const containerStyle = css`
     /* サイズ */
     width: 90%;
@@ -20,7 +21,6 @@ export const WorkDetail: VFC = () => {
     align-items: center;
     position: relative;
   `;
-
   const productTitleStyle = css`
     /* 文字 */
     font-size: 32px;
@@ -29,7 +29,6 @@ export const WorkDetail: VFC = () => {
       font-size: 16px;
     }
   `;
-
   const detailsStyle = css`
     /* サイズ */
     width: 100%;
@@ -45,7 +44,6 @@ export const WorkDetail: VFC = () => {
       flex-direction: column;
     }
   `;
-
   const imagesStyle = css`
     /* サイズ */
     width: 40%;
@@ -62,7 +60,6 @@ export const WorkDetail: VFC = () => {
       align-items: center;
     }
   `;
-
   const largeImageStyle = css`
     /* サイズ */
     width: 320px;
@@ -173,7 +170,6 @@ export const WorkDetail: VFC = () => {
     width: auto;
     height: 100%;
   `;
-
   const descriptionsStyle = css`
     /* サイズ */
     width: 40%;
@@ -190,7 +186,6 @@ export const WorkDetail: VFC = () => {
       height: 70%;
     }
   `;
-
   const skillSetStyle = css`
     /* 色 */
     color: darkcyan;
@@ -237,51 +232,41 @@ export const WorkDetail: VFC = () => {
 
   return (
     <div css={containerStyle}>
-      <h1 css={productTitleStyle}>Portfolio</h1>
+      <h1 css={productTitleStyle}>{isWorkData.title}</h1>
       <div css={detailsStyle}>
         <div css={imagesStyle}>
           <div css={largeImageStyle}>
             <img
-              src={PortfolioImage1}
+              src={isWorkData.image1}
               alt="largeImage"
               css={commonImageStyle}
             />
           </div>
           <div css={middleImageStyle}>
             <img
-              src={PortfolioImage2}
+              src={isWorkData.image2}
               alt="middleImage"
               css={commonImageStyle}
             />
           </div>
           <div css={smallImageStyle}>
             <img
-              src={PortfolioImage3}
+              src={isWorkData.image3}
               alt="smallImage"
               css={commonImageStyle}
             />
           </div>
         </div>
         <div css={descriptionsStyle}>
-          <Text>
-            当サイトです。
-            {"\n"}
-            モダンJavaScriptの学習も兼ねて、React + TypeScriptで制作しました。
-            設計の段階ではメンテナンス性を重視するためにAtomic
-            Designを採用しています。
-            {"\n"}
-            問い合わせフォームは、EmailJSを利用してメールの自動返信にも対応させています。
-          </Text>
-          <p css={skillSetStyle}>
-            HTML / CSS / JavaScript / React / TypeScript
-          </p>
+          <Text>{isWorkData.description}</Text>
+          <p css={skillSetStyle}>{isWorkData.skill}</p>
           <a
             rel="noopener noreferrer"
             target="_blank"
-            href="https://hirokimoriya.com/"
+            href={isWorkData.url}
             css={linkStyle}
           >
-            <p css={linkTextStyle}>https://hirokimoriya.com/</p>
+            <p css={linkTextStyle}>{isWorkData.url}</p>
             <LinkIcon />
           </a>
         </div>

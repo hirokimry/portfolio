@@ -3,22 +3,45 @@ import { VFC } from "react";
 import { css } from "@emotion/react";
 import { useContext } from "react";
 import { modalVisibleContext } from "../../context/modalVisible";
+import { workDataContext } from "../../context/workData";
 import { ProductTitle } from "../atoms/ProductTitle";
 import { ProductImage } from "../atoms/ProductImage";
 
 export type Props = {
   title: string;
-  image?: string;
+  image1?: string;
+  image2?: string;
+  image3?: string;
+  description?: string;
+  skill?: string;
+  url?: string;
 };
 
 export const Work: VFC<Props> = (props) => {
-  const cursor = props.image !== undefined ? "pointer" : "auto";
+  const cursor = props.image1 !== undefined ? "pointer" : "auto";
+
+  const title = props.title !== undefined ? props.title : ""
+  const image1 = props.image1 !== undefined ? props.image1 : ""
+  const image2 = props.image2 !== undefined ? props.image2 : ""
+  const image3 = props.image3 !== undefined ? props.image3 : ""
+  const description = props.description !== undefined ? props.description : ""
+  const skill = props.skill !== undefined ? props.skill : ""
+  const url = props.url !== undefined ? props.url : ""
 
   const isModal = useContext(modalVisibleContext);
+  const isWorkData = useContext(workDataContext);
+  
   const modalOpen =
-    props.image !== undefined
+    props.image1 !== undefined
       ? () => {
-          isModal.setIsModalVisible(true);
+        isWorkData.setIsTitle(title);
+        isWorkData.setIsImage1(image1);
+        isWorkData.setIsImage2(image2);
+        isWorkData.setIsImage3(image3);
+        isWorkData.setIsDescription(description);
+        isWorkData.setIsSkill(skill);
+        isWorkData.setIsUrl(url);
+        isModal.setIsModalVisible(true);
         }
       : () => [];
 
@@ -65,8 +88,8 @@ export const Work: VFC<Props> = (props) => {
 
   return (
     <div css={containerStyle} onClick={modalOpen}>
-      <ProductTitle>{props.title}</ProductTitle>
-      <ProductImage image={props.image} productName={props.title} />
+      <ProductTitle>{title}</ProductTitle>
+      <ProductImage image={props.image1} productName={props.title} />
     </div>
   );
 };

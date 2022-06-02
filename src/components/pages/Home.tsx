@@ -5,6 +5,8 @@ import { headerHeightContext } from "../../context/headerHeight";
 import { useHeaderHeight } from "../../context/headerHeight";
 import { modalVisibleContext } from "../../context/modalVisible";
 import { useModalVisible } from "../../context/modalVisible";
+import { workDataContext } from "../../context/workData";
+import { useWorkData } from "../../context/workData";
 import { Header } from "../organisms/Header";
 import { Main } from "../organisms/Main";
 import { Footer } from "../organisms/Footer";
@@ -13,6 +15,7 @@ import { Modal } from "../organisms/Modal";
 export const Home: VFC = () => {
   const headerHeight = useHeaderHeight();
   const modalVisible = useModalVisible();
+  const workData = useWorkData();
 
   const containerStyle = css`
     /* サイズ */
@@ -30,12 +33,14 @@ export const Home: VFC = () => {
   return (
     <headerHeightContext.Provider value={headerHeight}>
       <modalVisibleContext.Provider value={modalVisible}>
-        <div id="home" css={containerStyle}>
-          <Header />
-          <Main />
-          <Footer />
-          <Modal />
-        </div>
+        <workDataContext.Provider value={workData}>
+          <div id="home" css={containerStyle}>
+            <Header />
+            <Main />
+            <Footer />
+            <Modal />
+          </div>
+        </workDataContext.Provider>
       </modalVisibleContext.Provider>
     </headerHeightContext.Provider>
   );
